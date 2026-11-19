@@ -1,0 +1,6 @@
+# Allow non-root user access to HyperX Alloy Rise 75 (wired 03f0:02a1 & wireless 03f0:03a1)
+# Named 60-* so systemd's 73-seat-late.rules applies TAG+="uaccess" properly.
+KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="03f0", ATTRS{idProduct}=="02a1", MODE="0660", TAG+="uaccess"
+KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="03f0", ATTRS{idProduct}=="03a1", MODE="0660", TAG+="uaccess"
+SUBSYSTEM=="usb", ATTR{idVendor}=="03f0", ATTR{idProduct}=="02a1", MODE="0660", TAG+="uaccess"
+SUBSYSTEM=="usb", ATTR{idVendor}=="03f0", ATTR{idProduct}=="03a1", MODE="0660", TAG+="uaccess"
