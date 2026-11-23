@@ -242,7 +242,7 @@ def main() -> int:
                 if len(encoded_frames) <= 1:
                     sleep_s = 0.4
                 else:
-                    delay_ms = max(30, min(300, int(cfg.get("delay_ms", 50))))
+                    delay_ms = max(25, min(1000, int(cfg.get("delay_ms", 50))))
                     sleep_s = delay_ms / 1000.0
 
                 end_t = time.monotonic() + sleep_s

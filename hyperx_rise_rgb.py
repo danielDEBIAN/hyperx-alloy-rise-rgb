@@ -806,7 +806,7 @@ def main() -> int:
     p_eff.add_argument("--color2", default="39FF14", help="Color 2 RRGGBB")
     p_eff.add_argument("--color3", default="00E5FF", help="Color 3 RRGGBB")
     p_eff.add_argument("--color-type", choices=COLOR_TYPES, default="two")
-    p_eff.add_argument("--delay", type=int, default=50, help="Milisegundos por cuadro (25-200, menor = mas rapido)")
+    p_eff.add_argument("--delay", type=int, default=50, help="Milisegundos por cuadro (25-1000, menor = mas rapido)")
     p_eff.add_argument("--direction", choices=DIRECTIONS, default="right")
 
     p_br = sub.add_parser("brightness", help="Cambia el brillo (0-100)")
@@ -847,7 +847,7 @@ def main() -> int:
                 "mode": args.mode,
                 "color_type": args.color_type,
                 "direction": args.direction,
-                "delay_ms": max(25, min(200, int(args.delay))),
+                "delay_ms": max(25, min(1000, int(args.delay))),
                 "colors": [_fmt_rgb(c1), _fmt_rgb(c2), _fmt_rgb(c3)],
             })
             print(f"Efecto '{args.mode}' aplicado.")

@@ -594,7 +594,7 @@ class AlloyRiseWindow(Gtk.ApplicationWindow):
         grid_main.attach(self._label("Direccion:"), 0, 2, 1, 1)
         grid_main.attach(self.dd_dir, 1, 2, 1, 1)
 
-        self.scale_delay = Gtk.Scale.new_with_range(Gtk.Orientation.HORIZONTAL, 25, 200, 5)
+        self.scale_delay = Gtk.Scale.new_with_range(Gtk.Orientation.HORIZONTAL, 25, 1000, 5)
         self.scale_delay.set_value(50)
         self.scale_delay.set_draw_value(True)
         self.scale_delay.set_value_pos(Gtk.PositionType.RIGHT)
