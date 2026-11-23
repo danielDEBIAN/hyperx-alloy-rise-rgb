@@ -3,8 +3,8 @@
 Controlador RGB **nativo para Linux** para el teclado **HyperX Alloy Rise 75** (`03f0:02a1` / `03f0:03a1`), sin necesidad de Windows, máquinas virtuales ni HyperX NGENUITY.
 
 Incluye:
-- **Interfaz gráfica nativa en GTK 4** (`hyperx-rise-gui`) con selector de color, temas rápidos de 1 clic, brillo y velocidad en vivo.
-- **Herramienta CLI** (`hyperx-rise-rgb`) para automatización y scripts.
+- **Interfaz gráfica nativa en GTK 4** (`hyperx-rise-gui`) con **mapa interactivo del teclado** (control **por tecla individual**, arrastrar para pintar, cuentagotas, selección múltiple y **por zonas** incluyendo barras laterales), además de efectos animados, temas rápidos de 1 clic, brillo y velocidad en vivo.
+- **Herramienta CLI** (`hyperx-rise-rgb`) para automatización y scripts (colores, efectos, zonas y teclas individuales).
 - **Servicio ligero en segundo plano** (`systemd --user`, ~9 MB RAM, < 0.1% CPU) que mantiene tus colores y animaciones activos de forma fluida y se reconecta automáticamente al suspender o reconectar el teclado.
 - **Soporte dual `hidraw` + `libusb-1.0`**: evita automáticamente el *quirk* de `usbhid` en Linux (`error -71` en reconexión en caliente en la interfaz 2).
 
@@ -58,6 +58,14 @@ hyperx-rise-gui
 ```bash
 # Color sólido
 hyperx-rise-rgb solid 9B30FF
+
+# Pintar una zona específica (alphas, numbers, fkeys, wasd, arrows, nav, modifiers, sidebars...)
+hyperx-rise-rgb zone wasd 39FF14
+hyperx-rise-rgb zone sidebars 00E5FF
+
+# Pintar una tecla individual
+hyperx-rise-rgb key esc FF1E27
+hyperx-rise-rgb key space 9B30FF
 
 # Tema de dos zonas (teclas moradas + WASD/ESC/flechas/barras verdes)
 hyperx-rise-rgb effect twozone --color 9B30FF --color2 39FF14 --color-type two

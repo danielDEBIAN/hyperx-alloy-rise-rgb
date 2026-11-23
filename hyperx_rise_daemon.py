@@ -44,6 +44,7 @@ DEFAULT_CONFIG: dict[str, Any] = {
     "direction": "right",
     "delay_ms": 50,
     "colors": ["#9B30FF", "#39FF14", "#00E5FF"],
+    "custom_leds": {},
 }
 
 _running = True
@@ -163,8 +164,16 @@ def main() -> int:
         mode = str(new_cfg.get("mode", "solid"))
         ctype = str(new_cfg.get("color_type", "one"))
         direction = str(new_cfg.get("direction", "right"))
+        custom_leds = new_cfg.get("custom_leds") if isinstance(new_cfg.get("custom_leds"), dict) else None
         num_frames = 36 if mode in ("wave", "mirrorwave", "cycle", "breath") else 24
-        frames = generate_effect_frames(mode, cols, color_type=ctype, direction=direction, num_frames=num_frames)
+        frames = generate_effect_frames(
+            mode,
+            cols,
+            color_type=ctype,
+            direction=direction,
+            num_frames=num_frames,
+            custom_leds=custom_leds,
+        )
         return _prebuild_packets(frames)
 
     try:

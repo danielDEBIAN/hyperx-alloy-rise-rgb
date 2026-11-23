@@ -69,9 +69,140 @@ def _build_led_coords() -> dict[int, tuple[float, float]]:
 
 LED_COORDS = _build_led_coords()
 
+# Physical HyperX Alloy Rise 75 ANSI layout for visual GUI and zone/per-key control.
+# Coordinates (x, y, w, h) are in keycap units (1u = standard key width).
+# Sidebars occupy x = -0.55 (left) and x = 16.25 (right).
+KEYBOARD_LAYOUT: list[dict] = [
+    # Row 0 (F-Row, y = 0.0)
+    {"id": "esc", "label": "Esc", "x": 0.0, "y": 0.0, "w": 1.0, "h": 1.0, "leds": [1], "zone": "fkeys"},
+    {"id": "f1", "label": "F1", "x": 1.25, "y": 0.0, "w": 1.0, "h": 1.0, "leds": [2], "zone": "fkeys"},
+    {"id": "f2", "label": "F2", "x": 2.25, "y": 0.0, "w": 1.0, "h": 1.0, "leds": [3], "zone": "fkeys"},
+    {"id": "f3", "label": "F3", "x": 3.25, "y": 0.0, "w": 1.0, "h": 1.0, "leds": [4], "zone": "fkeys"},
+    {"id": "f4", "label": "F4", "x": 4.25, "y": 0.0, "w": 1.0, "h": 1.0, "leds": [5], "zone": "fkeys"},
+    {"id": "f5", "label": "F5", "x": 5.5, "y": 0.0, "w": 1.0, "h": 1.0, "leds": [6], "zone": "fkeys"},
+    {"id": "f6", "label": "F6", "x": 6.5, "y": 0.0, "w": 1.0, "h": 1.0, "leds": [7], "zone": "fkeys"},
+    {"id": "f7", "label": "F7", "x": 7.5, "y": 0.0, "w": 1.0, "h": 1.0, "leds": [8], "zone": "fkeys"},
+    {"id": "f8", "label": "F8", "x": 8.5, "y": 0.0, "w": 1.0, "h": 1.0, "leds": [9], "zone": "fkeys"},
+    {"id": "f9", "label": "F9", "x": 9.75, "y": 0.0, "w": 1.0, "h": 1.0, "leds": [10], "zone": "fkeys"},
+    {"id": "f10", "label": "F10", "x": 10.75, "y": 0.0, "w": 1.0, "h": 1.0, "leds": [11], "zone": "fkeys"},
+    {"id": "f11", "label": "F11", "x": 11.75, "y": 0.0, "w": 1.0, "h": 1.0, "leds": [12], "zone": "fkeys"},
+    {"id": "f12", "label": "F12", "x": 12.75, "y": 0.0, "w": 1.0, "h": 1.0, "leds": [13], "zone": "fkeys"},
+    {"id": "del", "label": "Del", "x": 14.0, "y": 0.0, "w": 1.0, "h": 1.0, "leds": [14], "zone": "nav"},
+    {"id": "knob", "label": "VOL", "x": 15.1, "y": 0.0, "w": 1.0, "h": 1.0, "leds": [], "zone": "none", "is_knob": True},
+    # Row 1 (Number Row, y = 1.15)
+    {"id": "grave", "label": "` ~", "x": 0.0, "y": 1.15, "w": 1.0, "h": 1.0, "leds": [15], "zone": "numbers"},
+    {"id": "1", "label": "1", "x": 1.0, "y": 1.15, "w": 1.0, "h": 1.0, "leds": [16], "zone": "numbers"},
+    {"id": "2", "label": "2", "x": 2.0, "y": 1.15, "w": 1.0, "h": 1.0, "leds": [17], "zone": "numbers"},
+    {"id": "3", "label": "3", "x": 3.0, "y": 1.15, "w": 1.0, "h": 1.0, "leds": [18], "zone": "numbers"},
+    {"id": "4", "label": "4", "x": 4.0, "y": 1.15, "w": 1.0, "h": 1.0, "leds": [19], "zone": "numbers"},
+    {"id": "5", "label": "5", "x": 5.0, "y": 1.15, "w": 1.0, "h": 1.0, "leds": [20], "zone": "numbers"},
+    {"id": "6", "label": "6", "x": 6.0, "y": 1.15, "w": 1.0, "h": 1.0, "leds": [21], "zone": "numbers"},
+    {"id": "7", "label": "7", "x": 7.0, "y": 1.15, "w": 1.0, "h": 1.0, "leds": [22], "zone": "numbers"},
+    {"id": "8", "label": "8", "x": 8.0, "y": 1.15, "w": 1.0, "h": 1.0, "leds": [23], "zone": "numbers"},
+    {"id": "9", "label": "9", "x": 9.0, "y": 1.15, "w": 1.0, "h": 1.0, "leds": [24], "zone": "numbers"},
+    {"id": "0", "label": "0", "x": 10.0, "y": 1.15, "w": 1.0, "h": 1.0, "leds": [25], "zone": "numbers"},
+    {"id": "minus", "label": "-", "x": 11.0, "y": 1.15, "w": 1.0, "h": 1.0, "leds": [26], "zone": "numbers"},
+    {"id": "equal", "label": "=", "x": 12.0, "y": 1.15, "w": 1.0, "h": 1.0, "leds": [27], "zone": "numbers"},
+    {"id": "backspace", "label": "Bksp", "x": 13.0, "y": 1.15, "w": 2.0, "h": 1.0, "leds": [28], "zone": "modifiers"},
+    {"id": "home", "label": "Home", "x": 15.1, "y": 1.15, "w": 1.0, "h": 1.0, "leds": [29, 30], "zone": "nav"},
+    # Row 2 (QWERTY, y = 2.15)
+    {"id": "tab", "label": "Tab", "x": 0.0, "y": 2.15, "w": 1.5, "h": 1.0, "leds": [31], "zone": "modifiers"},
+    {"id": "q", "label": "Q", "x": 1.5, "y": 2.15, "w": 1.0, "h": 1.0, "leds": [32], "zone": "alphas"},
+    {"id": "w", "label": "W", "x": 2.5, "y": 2.15, "w": 1.0, "h": 1.0, "leds": [33], "zone": "alphas"},
+    {"id": "e", "label": "E", "x": 3.5, "y": 2.15, "w": 1.0, "h": 1.0, "leds": [34], "zone": "alphas"},
+    {"id": "r", "label": "R", "x": 4.5, "y": 2.15, "w": 1.0, "h": 1.0, "leds": [35], "zone": "alphas"},
+    {"id": "t", "label": "T", "x": 5.5, "y": 2.15, "w": 1.0, "h": 1.0, "leds": [36], "zone": "alphas"},
+    {"id": "y", "label": "Y", "x": 6.5, "y": 2.15, "w": 1.0, "h": 1.0, "leds": [37], "zone": "alphas"},
+    {"id": "u", "label": "U", "x": 7.5, "y": 2.15, "w": 1.0, "h": 1.0, "leds": [38], "zone": "alphas"},
+    {"id": "i", "label": "I", "x": 8.5, "y": 2.15, "w": 1.0, "h": 1.0, "leds": [39], "zone": "alphas"},
+    {"id": "o", "label": "O", "x": 9.5, "y": 2.15, "w": 1.0, "h": 1.0, "leds": [40], "zone": "alphas"},
+    {"id": "p", "label": "P", "x": 10.5, "y": 2.15, "w": 1.0, "h": 1.0, "leds": [41], "zone": "alphas"},
+    {"id": "lbracket", "label": "[", "x": 11.5, "y": 2.15, "w": 1.0, "h": 1.0, "leds": [42], "zone": "alphas"},
+    {"id": "rbracket", "label": "]", "x": 12.5, "y": 2.15, "w": 1.0, "h": 1.0, "leds": [43], "zone": "alphas"},
+    {"id": "backslash", "label": "\\", "x": 13.5, "y": 2.15, "w": 1.5, "h": 1.0, "leds": [44], "zone": "alphas"},
+    {"id": "pgup", "label": "PgUp", "x": 15.1, "y": 2.15, "w": 1.0, "h": 1.0, "leds": [45], "zone": "nav"},
+    # Row 3 (ASDF, y = 3.15)
+    {"id": "caps", "label": "Caps", "x": 0.0, "y": 3.15, "w": 1.75, "h": 1.0, "leds": [46], "zone": "modifiers"},
+    {"id": "a", "label": "A", "x": 1.75, "y": 3.15, "w": 1.0, "h": 1.0, "leds": [47], "zone": "alphas"},
+    {"id": "s", "label": "S", "x": 2.75, "y": 3.15, "w": 1.0, "h": 1.0, "leds": [48], "zone": "alphas"},
+    {"id": "d", "label": "D", "x": 3.75, "y": 3.15, "w": 1.0, "h": 1.0, "leds": [49], "zone": "alphas"},
+    {"id": "f", "label": "F", "x": 4.75, "y": 3.15, "w": 1.0, "h": 1.0, "leds": [50], "zone": "alphas"},
+    {"id": "g", "label": "G", "x": 5.75, "y": 3.15, "w": 1.0, "h": 1.0, "leds": [51], "zone": "alphas"},
+    {"id": "h", "label": "H", "x": 6.75, "y": 3.15, "w": 1.0, "h": 1.0, "leds": [52], "zone": "alphas"},
+    {"id": "j", "label": "J", "x": 7.75, "y": 3.15, "w": 1.0, "h": 1.0, "leds": [53], "zone": "alphas"},
+    {"id": "k", "label": "K", "x": 8.75, "y": 3.15, "w": 1.0, "h": 1.0, "leds": [54], "zone": "alphas"},
+    {"id": "l", "label": "L", "x": 9.75, "y": 3.15, "w": 1.0, "h": 1.0, "leds": [55], "zone": "alphas"},
+    {"id": "semicolon", "label": ";", "x": 10.75, "y": 3.15, "w": 1.0, "h": 1.0, "leds": [56], "zone": "alphas"},
+    {"id": "quote", "label": "'", "x": 11.75, "y": 3.15, "w": 1.0, "h": 1.0, "leds": [57], "zone": "alphas"},
+    {"id": "enter", "label": "Enter", "x": 12.75, "y": 3.15, "w": 2.25, "h": 1.0, "leds": [58, 59], "zone": "modifiers"},
+    {"id": "pgdn", "label": "PgDn", "x": 15.1, "y": 3.15, "w": 1.0, "h": 1.0, "leds": [60], "zone": "nav"},
+    # Row 4 (ZXCV, y = 4.15)
+    {"id": "lshift", "label": "Shift", "x": 0.0, "y": 4.15, "w": 2.25, "h": 1.0, "leds": [61, 62], "zone": "modifiers"},
+    {"id": "z", "label": "Z", "x": 2.25, "y": 4.15, "w": 1.0, "h": 1.0, "leds": [63], "zone": "alphas"},
+    {"id": "x", "label": "X", "x": 3.25, "y": 4.15, "w": 1.0, "h": 1.0, "leds": [64], "zone": "alphas"},
+    {"id": "c", "label": "C", "x": 4.25, "y": 4.15, "w": 1.0, "h": 1.0, "leds": [65], "zone": "alphas"},
+    {"id": "v", "label": "V", "x": 5.25, "y": 4.15, "w": 1.0, "h": 1.0, "leds": [66], "zone": "alphas"},
+    {"id": "b", "label": "B", "x": 6.25, "y": 4.15, "w": 1.0, "h": 1.0, "leds": [67], "zone": "alphas"},
+    {"id": "n", "label": "N", "x": 7.25, "y": 4.15, "w": 1.0, "h": 1.0, "leds": [68], "zone": "alphas"},
+    {"id": "m", "label": "M", "x": 8.25, "y": 4.15, "w": 1.0, "h": 1.0, "leds": [69], "zone": "alphas"},
+    {"id": "comma", "label": ",", "x": 9.25, "y": 4.15, "w": 1.0, "h": 1.0, "leds": [70], "zone": "alphas"},
+    {"id": "dot", "label": ".", "x": 10.25, "y": 4.15, "w": 1.0, "h": 1.0, "leds": [71], "zone": "alphas"},
+    {"id": "slash", "label": "/", "x": 11.25, "y": 4.15, "w": 1.0, "h": 1.0, "leds": [72], "zone": "alphas"},
+    {"id": "rshift", "label": "Shift", "x": 12.25, "y": 4.15, "w": 1.75, "h": 1.0, "leds": [73, 74], "zone": "modifiers"},
+    {"id": "up", "label": "↑", "x": 14.1, "y": 4.15, "w": 1.0, "h": 1.0, "leds": [75], "zone": "arrows"},
+    # Row 5 (Bottom Row, y = 5.15)
+    {"id": "lctrl", "label": "Ctrl", "x": 0.0, "y": 5.15, "w": 1.25, "h": 1.0, "leds": [77, 79], "zone": "modifiers"},
+    {"id": "lwin", "label": "Win", "x": 1.25, "y": 5.15, "w": 1.25, "h": 1.0, "leds": [80], "zone": "modifiers"},
+    {"id": "lalt", "label": "Alt", "x": 2.5, "y": 5.15, "w": 1.25, "h": 1.0, "leds": [81], "zone": "modifiers"},
+    {"id": "space", "label": "Space", "x": 3.75, "y": 5.15, "w": 6.25, "h": 1.0, "leds": [78, 82], "zone": "modifiers"},
+    {"id": "ralt", "label": "Alt", "x": 10.0, "y": 5.15, "w": 1.0, "h": 1.0, "leds": [83], "zone": "modifiers"},
+    {"id": "fn", "label": "Fn", "x": 11.0, "y": 5.15, "w": 1.0, "h": 1.0, "leds": [84, 85, 86], "zone": "modifiers"},
+    {"id": "left", "label": "←", "x": 13.1, "y": 5.15, "w": 1.0, "h": 1.0, "leds": [87], "zone": "arrows"},
+    {"id": "down", "label": "↓", "x": 14.1, "y": 5.15, "w": 1.0, "h": 1.0, "leds": [88], "zone": "arrows"},
+    {"id": "right", "label": "→", "x": 15.1, "y": 5.15, "w": 1.0, "h": 1.0, "leds": [89], "zone": "arrows"},
+    # Side bars (7 LEDs each, spanning rows 0..5)
+    *[
+        {"id": f"bar_l{i}", "label": "", "x": -0.55, "y": i * (6.15 / 7.0), "w": 0.35, "h": (6.15 / 7.0) - 0.06, "leds": [90 + i * 2], "zone": "sidebar_left", "is_sidebar": True}
+        for i in range(7)
+    ],
+    *[
+        {"id": f"bar_r{i}", "label": "", "x": 16.3, "y": i * (6.15 / 7.0), "w": 0.35, "h": (6.15 / 7.0) - 0.06, "leds": [91 + i * 2], "zone": "sidebar_right", "is_sidebar": True}
+        for i in range(7)
+    ],
+]
+
+ZONES: dict[str, list[int]] = {
+    "all": [led for k in KEYBOARD_LAYOUT for led in k["leds"]],
+    "alphas": [led for k in KEYBOARD_LAYOUT if k["zone"] == "alphas" for led in k["leds"]],
+    "numbers": [led for k in KEYBOARD_LAYOUT if k["zone"] == "numbers" for led in k["leds"]],
+    "fkeys": [led for k in KEYBOARD_LAYOUT if k["zone"] == "fkeys" for led in k["leds"]],
+    "modifiers": [led for k in KEYBOARD_LAYOUT if k["zone"] == "modifiers" for led in k["leds"]],
+    "wasd": [33, 47, 48, 49],
+    "arrows": [75, 87, 88, 89],
+    "nav": [14, 29, 30, 45, 60],
+    "sidebar_left": [90, 92, 94, 96, 98, 100, 102],
+    "sidebar_right": [91, 93, 95, 97, 99, 101, 103],
+    "sidebars": list(range(90, 104)),
+}
+
+ZONE_ITEMS: list[tuple[str, str]] = [
+    ("all", "Todo el teclado"),
+    ("alphas", "Letras (A-Z)"),
+    ("numbers", "Fila numerica (1-0)"),
+    ("fkeys", "Teclas de funcion (Esc, F1-F12)"),
+    ("modifiers", "Modificadores (Shift, Ctrl, Space, Enter...)"),
+    ("wasd", "WASD"),
+    ("arrows", "Flechas"),
+    ("nav", "Navegacion (Del, Home, PgUp, PgDn)"),
+    ("sidebar_left", "Barra lateral izquierda"),
+    ("sidebar_right", "Barra lateral derecha"),
+    ("sidebars", "Ambas barras laterales"),
+]
+
 EFFECT_MODES = (
     "solid",
     "twozone",
+    "custom",
     "breath",
     "wave",
     "mirrorwave",
@@ -134,6 +265,7 @@ def generate_effect_frames(
     color_type: str = "one",
     direction: str = "right",
     num_frames: int = 24,
+    custom_leds: Optional[dict[str, str]] = None,
 ) -> list[list[tuple[int, int, int]]]:
     """Generate FrameLight RGB frames (each frame has NUM_LEDS (r,g,b) tuples)."""
     c1 = colors[0] if len(colors) >= 1 else (155, 48, 255)
@@ -146,6 +278,18 @@ def generate_effect_frames(
 
     if mode == "solid":
         return [[c1] * NUM_LEDS]
+
+    if mode == "custom":
+        frame = [c1] * NUM_LEDS
+        if custom_leds:
+            for k, hex_val in custom_leds.items():
+                try:
+                    idx = int(k)
+                    if 1 <= idx <= NUM_LEDS:
+                        frame[idx - 1] = parse_hex_color(str(hex_val))
+                except Exception:
+                    continue
+        return [frame]
 
     if mode == "twozone":
         frame = [c1] * NUM_LEDS
@@ -598,9 +742,8 @@ def cmd_info(dev: AlloyRise75, profile: Optional[int]) -> None:
         print(f"Modo        : {mode_name} (frame_delay={delay} ms)")
 
 
-def _update_daemon_config(updates: dict) -> None:
+def _load_daemon_config() -> dict:
     import json
-    import subprocess
 
     cfg_dir = os.path.join(os.environ.get("XDG_CONFIG_HOME", os.path.expanduser("~/.config")), "hyperx-alloy-rise-rgb")
     cfg_path = os.path.join(cfg_dir, "config.json")
@@ -612,6 +755,7 @@ def _update_daemon_config(updates: dict) -> None:
         "direction": "right",
         "delay_ms": 50,
         "colors": ["#9B30FF", "#39FF14", "#00E5FF"],
+        "custom_leds": {},
     }
     try:
         with open(cfg_path, "r", encoding="utf-8") as f:
@@ -620,6 +764,16 @@ def _update_daemon_config(updates: dict) -> None:
             cfg.update(data)
     except Exception:
         pass
+    return cfg
+
+
+def _update_daemon_config(updates: dict) -> None:
+    import json
+    import subprocess
+
+    cfg_dir = os.path.join(os.environ.get("XDG_CONFIG_HOME", os.path.expanduser("~/.config")), "hyperx-alloy-rise-rgb")
+    cfg_path = os.path.join(cfg_dir, "config.json")
+    cfg = _load_daemon_config()
     cfg.update(updates)
     os.makedirs(cfg_dir, exist_ok=True)
     tmp = cfg_path + ".tmp"
@@ -658,6 +812,14 @@ def main() -> int:
     p_br = sub.add_parser("brightness", help="Cambia el brillo (0-100)")
     p_br.add_argument("percent", type=int)
 
+    p_zone = sub.add_parser("zone", help="Pinta una zona especifica en modo por-tecla")
+    p_zone.add_argument("zone_name", choices=sorted(ZONES.keys()))
+    p_zone.add_argument("color", help="Color hex RRGGBB")
+
+    p_key = sub.add_parser("key", help="Pinta una tecla individual (ej. esc, w, space, enter)")
+    p_key.add_argument("key_id", help="Nombre/ID de la tecla (ej. w, esc, space, bar_l0)")
+    p_key.add_argument("color", help="Color hex RRGGBB")
+
     sub.add_parser("native", help="Pausa el control en Linux y vuelve al efecto interno del teclado")
 
     p_dir = sub.add_parser("direct", help="Envia un solo cuadro Direct Mode")
@@ -694,6 +856,31 @@ def main() -> int:
             pct = max(0, min(100, int(args.percent)))
             _update_daemon_config({"brightness": pct})
             print(f"Brillo ajustado a {pct}%.")
+            return 0
+        if args.cmd == "zone":
+            c = _fmt_rgb(parse_hex_color(args.color))
+            cfg = _load_daemon_config()
+            custom_leds = dict(cfg.get("custom_leds") or {})
+            for led in ZONES[args.zone_name]:
+                custom_leds[str(led)] = c
+            _update_daemon_config({"enabled": True, "mode": "custom", "custom_leds": custom_leds})
+            print(f"Zona '{args.zone_name}' pintada de {c}.")
+            return 0
+        if args.cmd == "key":
+            c = _fmt_rgb(parse_hex_color(args.color))
+            target = args.key_id.strip().lower()
+            matched_leds: list[int] = []
+            for item in KEYBOARD_LAYOUT:
+                if item["id"] == target or item["label"].lower() == target:
+                    matched_leds.extend(item["leds"])
+            if not matched_leds:
+                raise ValueError(f"Tecla '{args.key_id}' no encontrada.")
+            cfg = _load_daemon_config()
+            custom_leds = dict(cfg.get("custom_leds") or {})
+            for led in matched_leds:
+                custom_leds[str(led)] = c
+            _update_daemon_config({"enabled": True, "mode": "custom", "custom_leds": custom_leds})
+            print(f"Tecla '{args.key_id}' pintada de {c}.")
             return 0
         if args.cmd == "native":
             _update_daemon_config({"enabled": False})
