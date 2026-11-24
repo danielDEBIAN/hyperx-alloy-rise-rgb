@@ -10,6 +10,7 @@ Incluye:
 
 ## Efectos soportados (102 LEDs + barras laterales)
 
+- **Personalizado** (`custom`): control individual **por tecla** y **por zonas** (102 LEDs, incluyendo los 14 segmentos de las barras laterales)
 - **Sólido** (`solid`)
 - **Dos zonas** (`twozone`): color base para teclas + acentos en `ESC`, `WASD`, flechas y barras laterales
 - **Respiración** (`breath`)
@@ -19,7 +20,7 @@ Incluye:
 - **Confeti / Destellos** (`confetti`)
 - **Alternado** (`alternating`)
 - **Apagado** (`off`)
-- **Brillo** (`0–100%`) y botón para pausar el control en Linux y volver al efecto interno del teclado.
+- **Brillo (`0–100%`)**, **retardo por cuadro (`25–1000 ms`)** para animaciones, y botón para pausar el control en Linux y volver al efecto interno del teclado.
 
 ## Requisitos
 
@@ -53,13 +54,25 @@ Abre **HyperX Alloy Rise 75 RGB** desde tu menú de aplicaciones o ejecuta:
 hyperx-rise-gui
 ```
 
+La ventana cuenta con dos pestañas principales y una barra superior fija para activar/pausar el control en Linux y ajustar el **brillo (`0–100%`)**:
+
+- **Teclado (Por tecla / Zonas):**
+  - Mapa visual interactivo del HyperX Alloy Rise 75 (incluyendo perilla y barras laterales izquierda/derecha).
+  - **Pintar:** haz clic o arrastra el cursor sobre las teclas y segmentos laterales para pintarlos al instante.
+  - **Seleccionar:** cambia al modo *Seleccionar* (o usa `Ctrl + Clic`) para marcar múltiples teclas y pintarlas juntas.
+  - **Cuentagotas:** haz **clic derecho** sobre cualquier tecla para copiar su color al pincel.
+  - **Zonas:** pinta o selecciona bloques completos (`all`, `alphas`, `numbers`, `fkeys`, `modifiers`, `wasd`, `arrows`, `nav`, `sidebar_left`, `sidebar_right`, `sidebars`).
+  - **Importar de efecto:** copia los colores actuales de la pestaña de efectos al mapa por tecla para editarlos encima.
+- **Efectos y Animaciones:**
+  - Configura modo, paleta (`1–3` colores o arcoíris), dirección, **retardo por cuadro (`25–1000 ms`)** y temas rápidos de 1 clic.
+
 ### Línea de comandos (CLI)
 
 ```bash
 # Color sólido
 hyperx-rise-rgb solid 9B30FF
 
-# Pintar una zona específica (alphas, numbers, fkeys, wasd, arrows, nav, modifiers, sidebars...)
+# Pintar una zona específica (all, alphas, numbers, fkeys, modifiers, wasd, arrows, nav, sidebar_left, sidebar_right, sidebars)
 hyperx-rise-rgb zone wasd 39FF14
 hyperx-rise-rgb zone sidebars 00E5FF
 
@@ -70,7 +83,7 @@ hyperx-rise-rgb key space 9B30FF
 # Tema de dos zonas (teclas moradas + WASD/ESC/flechas/barras verdes)
 hyperx-rise-rgb effect twozone --color 9B30FF --color2 39FF14 --color-type two
 
-# Ola arcoíris hacia la derecha
+# Ola arcoíris hacia la derecha (retardo ajustable de 25 a 1000 ms por cuadro)
 hyperx-rise-rgb effect wave --color-type spectrum --direction right --delay 45
 
 # Respiración alternando 2 colores
