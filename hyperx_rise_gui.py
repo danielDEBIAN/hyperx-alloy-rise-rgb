@@ -310,6 +310,7 @@ class KeyboardCanvas(Gtk.DrawingArea):
                 cx = kx + kw / 2.0
                 cy = ky + kh / 2.0
                 rad = min(kw, kh) * 0.42
+                cr.new_sub_path()
                 cr.arc(cx, cy, rad, 0, 2 * math.pi)
                 cr.set_source_rgb(0.18, 0.18, 0.22)
                 cr.fill_preserve()
@@ -383,19 +384,43 @@ class KeyboardCanvas(Gtk.DrawingArea):
             # Key label
             label = item["label"]
             if label:
-                cr.select_font_face("Sans", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_BOLD)
-                fsize = font_base if len(label) <= 2 else font_base * 0.78
-                cr.set_font_size(fsize)
                 if is_off:
                     cr.set_source_rgb(0.55, 0.55, 0.62)
                 else:
                     # Bright readable label tinted slightly toward key color
                     cr.set_source_rgb(0.75 + rf * 0.25, 0.75 + gf * 0.25, 0.78 + bf * 0.22)
-                ext = cr.text_extents(label)
-                tx = kx + (kw - ext.width) / 2.0 - ext.x_bearing
-                ty = ky + (kh - ext.height) / 2.0 - ext.y_bearing
-                cr.move_to(tx, ty)
-                cr.show_text(label)
+                if label in ("↑", "↓", "←", "→"):
+                    cx = kx + kw / 2.0
+                    cy = ky + kh / 2.0
+                    s = min(kw, kh) * 0.20
+                    cr.new_sub_path()
+                    if label == "↑":
+                        cr.move_to(cx, cy - s)
+                        cr.line_to(cx + s, cy + s * 0.75)
+                        cr.line_to(cx - s, cy + s * 0.75)
+                    elif label == "↓":
+                        cr.move_to(cx, cy + s)
+                        cr.line_to(cx + s, cy - s * 0.75)
+                        cr.line_to(cx - s, cy - s * 0.75)
+                    elif label == "←":
+                        cr.move_to(cx - s, cy)
+                        cr.line_to(cx + s * 0.75, cy - s)
+                        cr.line_to(cx + s * 0.75, cy + s)
+                    else:
+                        cr.move_to(cx + s, cy)
+                        cr.line_to(cx - s * 0.75, cy - s)
+                        cr.line_to(cx - s * 0.75, cy + s)
+                    cr.close_path()
+                    cr.fill()
+                else:
+                    cr.select_font_face("Sans", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_BOLD)
+                    fsize = font_base if len(label) <= 2 else font_base * 0.78
+                    cr.set_font_size(fsize)
+                    ext = cr.text_extents(label)
+                    tx = kx + (kw - ext.width) / 2.0 - ext.x_bearing
+                    ty = ky + (kh - ext.height) / 2.0 - ext.y_bearing
+                    cr.move_to(tx, ty)
+                    cr.show_text(label)
 
 
 class AlloyRiseWindow(Gtk.ApplicationWindow):

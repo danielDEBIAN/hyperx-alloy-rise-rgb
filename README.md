@@ -8,6 +8,14 @@ Incluye:
 - **Servicio ligero en segundo plano** (`systemd --user`, ~9 MB RAM, < 0.1% CPU) que mantiene tus colores y animaciones activos de forma fluida y se reconecta automáticamente al suspender o reconectar el teclado.
 - **Soporte dual `hidraw` + `libusb-1.0`**: evita automáticamente el *quirk* de `usbhid` en Linux (`error -71` en reconexión en caliente en la interfaz 2).
 
+## Capturas
+
+### Control por tecla y por zonas
+![Interfaz interactiva por tecla y por zonas](docs/screenshot-keyboard.png)
+
+### Efectos y animaciones
+![Pestaña de efectos y animaciones](docs/screenshot-effects.png)
+
 ## Efectos soportados (102 LEDs + barras laterales)
 
 - **Personalizado** (`custom`): control individual **por tecla** y **por zonas** (102 LEDs, incluyendo los 14 segmentos de las barras laterales)
